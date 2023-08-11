@@ -8,4 +8,7 @@ public class PostDto  {
     private String title;
     private String description;
     private String content;
+
+    // Định nghĩa lớp DTO: DTO chứa các trường dữ liệu mà bạn muốn truyền giữa khác tầng.
+    // DTO class không nên chưa logic business, chỉ nên chưa các filed và getter/setter
 }
