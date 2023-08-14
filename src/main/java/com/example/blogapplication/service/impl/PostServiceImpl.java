@@ -1,7 +1,7 @@
 package com.example.blogapplication.service.impl;
 
 import com.example.blogapplication.exception.ResourceNotFoundException;
-import com.example.blogapplication.model.Post;
+import com.example.blogapplication.entity.Post;
 import com.example.blogapplication.payload.PostDto;
 import com.example.blogapplication.payload.PostResponse;
 import com.example.blogapplication.repository.PostRepository;

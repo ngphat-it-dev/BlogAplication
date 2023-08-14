@@ -1,11 +1,11 @@
 package com.example.blogapplication.repository;
 
-import com.example.blogapplication.model.Post;
+import com.example.blogapplication.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /*
-* JpaRepository là một phần của Spring Data JPA và cung cấp các phương thức để thực hiện các thao tác cơ bản với cơ sở dữ liệu,
-* chẳng hạn như thêm, sửa, xóa, truy vấn dữ liệu.
+* JpaRepository là một phần của Spring Data JPA và cung cấp các phương thức để thực hiện các thao tác cơ bản với cơ sở
+* dữ liệu, chẳng hạn như thêm, sửa, xóa, truy vấn dữ liệu.
 *
 * Post: Đối số đầu tiên của JpaRepository xác định entity mà giao diện PostRepository sẽ làm việc với.
 * Trong trường hợp này, đó là Post entity.
