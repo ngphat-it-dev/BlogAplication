@@ -2,12 +2,14 @@ package com.example.blogapplication.service.impl;
 
 import com.example.blogapplication.entity.Comment;
 import com.example.blogapplication.entity.Post;
+import com.example.blogapplication.exception.BlogAPIException;
 import com.example.blogapplication.exception.ResourceNotFoundException;
 import com.example.blogapplication.payload.CommentDto;
 import com.example.blogapplication.payload.PostDto;
 import com.example.blogapplication.repository.CommentRepository;
 import com.example.blogapplication.repository.PostRepository;
 import com.example.blogapplication.service.CommentService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,6 +46,22 @@ public class CommentServiceImpl implements CommentService {
 
         // convert list of comment entities to list of comment Dto
         return comments.stream().map(comment -> mapToDTO(comment)).collect(Collectors.toList());
+    }
+
+    @Override
+    public CommentDto getCommentById(Long postId, Long commentId) {
+        // retrieve post entity by id
+        Post post = postRepository.findById(postId).orElseThrow(() ->
+                new ResourceNotFoundException("Post","id",postId));
+
+        // retrieve comment by id
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() ->
+                        new ResourceNotFoundException("comment","id", commentId));
+
+        if(!comment.getPost().getId().equals(post.getId())){
+            throw new BlogAPIException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
+        }
+        return mapToDTO(comment);
     }
 
     // Convert Entity into DTO
