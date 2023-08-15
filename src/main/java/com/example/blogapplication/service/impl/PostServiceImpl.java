@@ -26,7 +26,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDto createPost(PostDto postDto) {
 
-        //Conver DTO to model
+        //Conver DTO to entity
         Post post = mapToEntity(postDto);
         Post newPost = postRepository.save(post);
 
