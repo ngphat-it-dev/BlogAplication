@@ -57,4 +57,9 @@ public class PostController {
         postService.deletePostById(id);
         return new ResponseEntity<>("Post entity deleted succesfully.", HttpStatus.OK);
     }
+
+    @GetMapping("/test")
+    public String test(){
+        return "NewFeeds";
+    }
 }
