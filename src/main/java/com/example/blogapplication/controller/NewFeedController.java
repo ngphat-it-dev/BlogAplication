@@ -21,7 +21,7 @@ public class NewFeedController {
     private PostService postService;
     @GetMapping("/")
     public String viewPost(@RequestParam(name = "pageNo") int pageNo, Model model) {
-       PostResponse posts = postService.getAllPosts(pageNo,4,"id", "asc");
+       PostResponse posts = postService.getAllPosts(pageNo,3,"id", "asc");
 
         System.out.println(posts);
 
