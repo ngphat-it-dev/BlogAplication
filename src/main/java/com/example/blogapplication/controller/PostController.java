@@ -14,6 +14,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class PostController {
     private PostService postService;
 
-    // If configuring a class as a spring bean and it has only one constructor, we can omit @Autowired annotation
+    // If configuring a class as a spring bean & it has only one constructor, we can omit @Autowired annotation
 
     public PostController(PostService postService) {
         this.postService = postService;
@@ -55,6 +56,8 @@ public class PostController {
             @ApiResponse(responseCode = "400", description = "Invalid request"),
             @ApiResponse(responseCode = "500", description = "Error while retrieving posts")
     })
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     public CollectionModel<EntityModel<PostDto>> getAllPosts(
             @RequestParam(value = "pageNo",defaultValue = AppConstants.DEFAULT_PAGE_NUMBER, required = false) int pageNo,
